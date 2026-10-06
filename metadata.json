@@ -1,0 +1,6 @@
+{
+  "name": "Final Destination Bloodlines: Skyview Tower Survival",
+  "description": "A pulse-pounding 3D survival horror game set in the doomed Skyview Tower. Dodge freak hazards, defy Death's design, master joystick navigation, and interact with the malfunctioning elevator to survive.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,188 @@
+import { TowerFloorDef, InteractableItem, HazardTrap } from '../types/game';
+
+export const TOWER_FLOORS: TowerFloorDef[] = [
+  {
+    id: 4,
+    floorNumber: 4,
+    title: 'Skyview Rooftop & Dance Lounge',
+    subtitle: 'APEX OBSERVATION DECK · 100 GUESTS',
+    heightY: 60,
+    description: 'The glittering rooftop gala. 100 bots partying on the glass dance floor under the giant antenna spire.',
+    objective: 'Survive the initial 30-second collapse and take the express elevator to escape down the tower.',
+    primaryHazard: 'Rooftop Spire Crash & Shattering Dance Floor',
+    atmosphereTone: 'Bright disco neon, vibrant party spotlights',
+  },
+  {
+    id: 3,
+    floorNumber: 3,
+    title: 'Kitchen Floor',
+    subtitle: 'COMMERCIAL SKY-KITCHEN & PREP AREA',
+    heightY: 40,
+    description: 'The industrial sky-kitchen supplying the rooftop gala. Sizzling stovetops, gas lines shaking loose, panicked chef bots.',
+    objective: 'Navigate past ruptured steam valves and gas burners back to the elevator or stairs.',
+    primaryHazard: 'Ruptured Gas Lines & Hot Griddles',
+    atmosphereTone: 'Industrial stainless steel, flickering fluorescent lights',
+  },
+  {
+    id: 2,
+    floorNumber: 2,
+    title: 'Floor 2 (Pathway to Tower 2)',
+    subtitle: 'HIGH-ALTITUDE SUSPENSION SKYBRIDGE',
+    heightY: 20,
+    description: 'An exterior glass-enclosed skybridge connecting Tower 1 directly to the adjacent Tower 2.',
+    objective: 'Cross the pathway to Tower 2 to escape the structural collapse of Tower 1!',
+    primaryHazard: 'Swaying Suspension Cables & Gale Winds',
+    atmosphereTone: 'Cold exterior rain, howling winds, vertigo drops',
+  },
+  {
+    id: 1,
+    floorNumber: 1,
+    title: 'Floor 1 (The Exit)',
+    subtitle: 'GROUND PLAZA & EMERGENCY STREET EXIT',
+    heightY: 0,
+    description: 'The grand street-level reception lobby and plaza. Sirens outside, emergency exit doors leading to safety.',
+    objective: 'Run through the lobby glass doors to the street to achieve complete safety!',
+    primaryHazard: 'Falling Glass Shards from Above',
+    atmosphereTone: 'Red emergency exit signs, sirens echoing from outside',
+  },
+];
+
+export const INITIAL_INTERACTABLES: InteractableItem[] = [
+  // Floor 4 Interactables (Rooftop Party)
+  {
+    id: 'f4_elevator_call',
+    name: 'Express Elevator Call Station',
+    type: 'elevator_call',
+    floorId: 4,
+    position: { x: 0, y: 60, z: -14.5 },
+    radius: 3.8,
+    promptLabel: 'Operate Express Elevator',
+  },
+
+  // Floor 3 Interactables (Kitchen Floor)
+  {
+    id: 'f3_elevator_call',
+    name: 'Elevator Call Button',
+    type: 'elevator_call',
+    floorId: 3,
+    position: { x: 0, y: 40, z: -14.5 },
+    radius: 3.8,
+    promptLabel: 'Call Elevator',
+  },
+  {
+    id: 'f3_gas_valve',
+    name: 'Emergency Kitchen Gas Shutoff',
+    type: 'steam_valve',
+    floorId: 3,
+    position: { x: 8, y: 40, z: 2 },
+    radius: 2.5,
+    promptLabel: 'Shut Off Leaking Gas Valve',
+  },
+
+  // Floor 2 Interactables (Pathway to Tower 2)
+  {
+    id: 'f2_elevator_call',
+    name: 'Elevator Call Button',
+    type: 'elevator_call',
+    floorId: 2,
+    position: { x: 0, y: 20, z: -14.5 },
+    radius: 3.8,
+    promptLabel: 'Call Elevator',
+  },
+  {
+    id: 'f2_tower2_gate',
+    name: 'Tower 2 Skybridge Air-Lock Gate',
+    type: 'evac_hatch',
+    floorId: 2,
+    position: { x: 0, y: 20, z: 15 },
+    radius: 3.5,
+    promptLabel: 'ESCAPE ACROSS PATHWAY TO TOWER 2',
+  },
+
+  // Floor 1 Interactables (The Exit)
+  {
+    id: 'f1_elevator_call',
+    name: 'Elevator Call Button',
+    type: 'elevator_call',
+    floorId: 1,
+    position: { x: 0, y: 0, z: -14.5 },
+    radius: 3.8,
+    promptLabel: 'Call Elevator',
+  },
+  {
+    id: 'f1_street_exit',
+    name: 'Grand Lobby Plaza Street Exit',
+    type: 'evac_hatch',
+    floorId: 1,
+    position: { x: 0, y: 0, z: 15 },
+    radius: 3.8,
+    promptLabel: 'ESCAPE THROUGH LOBBY EXIT DOORS',
+  },
+];
+
+export const INITIAL_HAZARDS: HazardTrap[] = [
+  // Floor 4 Hazards
+  {
+    id: 'h_f4_roof_spire',
+    name: 'Falling Antenna Spire',
+    description: 'The 80-foot antenna spire is crashing through the glass dome!',
+    floorId: 4,
+    position: { x: 0, y: 60, z: 0 },
+    radius: 4.5,
+    type: 'spire_lightning',
+    warningActive: false,
+    warningProgress: 0,
+    triggered: false,
+    lethal: true,
+    damage: 100,
+    dodgeWindow: true,
+  },
+  // Floor 3 Hazards (Kitchen)
+  {
+    id: 'h_f3_gas_explosion',
+    name: 'Ruptured Gas Range Flare',
+    description: 'Pressurized kitchen gas is igniting over the open griddles!',
+    floorId: 3,
+    position: { x: -4, y: 40, z: 2 },
+    radius: 3.2,
+    type: 'steam_jet',
+    warningActive: false,
+    warningProgress: 0,
+    triggered: false,
+    lethal: false,
+    damage: 40,
+    dodgeWindow: true,
+  },
+  // Floor 2 Hazards (Pathway)
+  {
+    id: 'h_f2_bridge_wind',
+    name: 'Skybridge Shattering Glass Panel',
+    description: 'Gale winds blew out an exterior glass panel on the pathway to Tower 2!',
+    floorId: 2,
+    position: { x: 0, y: 20, z: 6 },
+    radius: 3.0,
+    type: 'cracking_glass',
+    warningActive: false,
+    warningProgress: 0,
+    triggered: false,
+    lethal: true,
+    damage: 100,
+    dodgeWindow: true,
+  },
+  // Floor 1 Hazards (Exit)
+  {
+    id: 'h_f1_falling_glass',
+    name: 'Falling Façade Shards',
+    description: 'Tons of shattered glass from the upper floors are raining onto the lobby skylight!',
+    floorId: 1,
+    position: { x: 0, y: 0, z: 4 },
+    radius: 3.8,
+    type: 'falling_debris',
+    warningActive: false,
+    warningProgress: 0,
+    triggered: false,
+    lethal: false,
+    damage: 35,
+    dodgeWindow: true,
+  },
+];
